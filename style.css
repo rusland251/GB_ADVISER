@@ -358,7 +358,8 @@ line-height: 24px;
   color: #4F81FF;
 }
 
-.slider-text__btn:active{
+.st__active-btn{
+  padding-bottom: 13px;
   border-bottom: 1px solid #1E5EFF;
   color: #1E5EFF;
 }
