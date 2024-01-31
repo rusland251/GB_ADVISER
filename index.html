@@ -11,15 +11,55 @@
 
 <body>
   <div class="container">
+
+    <!--  header  -->
     <header>
-      <div class="header__logo"></div>
-      <div class="header__search-input"></div>
-      <div class="header__user-block"></div>
+      <!-- logo -->
+      <div class="header__logo">
+        <div class="header__logo__img"><img src="icon.svg" alt=""></div>
+        <p>GB Adviser</p>
+      </div>
+      <!-- header__search -->
+      <div class="header__search-input">
+        <input class="header__search-input__input" type="text" placeholder="Поиск...">
+      </div>
+      <!-- header__user-block -->
+      <div class="header__user-block">
+        <div class="header__user-block__chat">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M19 3C20.1046 3 21 3.89543 21 5V17C21 18.1046 20.1046 19 19 19H9L3 22L3 5C3 3.89543 3.89543 3 5 3H19ZM19 5H5V18.468L8.44603 17H19V5ZM11 12V14H7V12H11ZM17 8V10H7V8H17Z"
+              fill="#7E84A3" />
+          </svg>
+        </div>
+        <div class="header__user-block__notifications">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M13 3C15.2816 3.46373 17 5.58146 17 8V12C18.1046 12 19 12.8954 19 14V19H14C14 20.1046 13.1046 21 12 21C10.8954 21 10 20.1046 10 19H5V14C5 12.8954 5.89543 12 7 12V8C7 5.58111 8.71785 3.46334 11 3H13ZM12 5C10.4023 5 9.09634 6.24892 9.00509 7.82373L9 8V12C9 13.1046 8.10457 14 7 14V17H17V14C15.8954 14 15 13.1046 15 12V8C15 6.34315 13.6569 5 12 5Z"
+              fill="#7E84A3" />
+          </svg>
+
+        </div>
+        <div class="header__user-block__user">
+          <div>
+            <img src="./assets/img/avatar.jpg" alt="img">
+          </div>
+          <p>username username</p>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M6.29289 9.29289C5.93241 9.65338 5.90468 10.2206 6.2097 10.6129L6.29289 10.7071L11.2929 15.7071C11.6534 16.0676 12.2206 16.0953 12.6129 15.7903L12.7071 15.7071L17.7071 10.7071C18.0976 10.3166 18.0976 9.68342 17.7071 9.29289C17.3466 8.93241 16.7794 8.90468 16.3871 9.2097L16.2929 9.29289L12 13.585L7.70711 9.29289C7.34662 8.93241 6.77939 8.90468 6.3871 9.2097L6.29289 9.29289Z"
+              fill="#7E84A3" />
+          </svg>
+
+        </div>
+      </div>
     </header>
+
+    <!-- nav main  -->
     <div class="nav-main__container">
       <nav>
         <div class="nav-main">
-          <ul class="nav-main__top">
+          <ul class="nav-main__ul">
             <li><a href="#">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
@@ -85,7 +125,8 @@
                 <span>Поддержка</span>
               </a></li>
           </ul>
-          <ul class="nav-main__middle">
+          <p class="nav-main__description">Информация</p>
+          <ul class="nav-main__ul">
             <li><a href="#">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
@@ -103,7 +144,8 @@
                 <span>Обновления</span>
               </a></li>
           </ul>
-          <ul class="nav-main__bottom">
+          <p class="nav-main__description">Настройки</p>
+          <ul class="nav-main__ul">
             <li><a href="#">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
@@ -132,13 +174,26 @@
             Назад
           </button>
           <h1>Настройки профиля</h1>
+          <div class="nav-right__block">
+            <ul class="nav-right__block__ul">
+              <li><a href="#">Первичная настройка</a></li>
+              <li><a href="#">Профиль пользователя</a></li>
+              <li><a href="#">Изменение общих настроек</a></li>
+              <li><a href="#">Дополнительные возможности</a></li>
+              <li><a href="#">Отправка запросов</a></li>
+              <li><a href="#">Работа со стастистикой</a></li>
+            </ul>
+          </div>
         </div>
       </nav>
+      <!-- main -->
       <main class="text-block">
         <div class="text-block__search-input">
-          <input type="search" id="site-search" name="q" />
+          <input class="text-block__search-input__input" type="text" placeholder="Поиск...">
         </div>
+        <!-- text-block__page -->
         <section class="text-block__page">
+          <!-- group-1 -->
           <div class="group-1">
             <h2>Первичная настройка</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis minima necessitatibus ducimus
@@ -149,12 +204,14 @@
               <p>Рекомендации:</p>
               <p>Lorem ipsum dolor sit, amet, consectetur adipisicing elit. Fugiat.</p>
             </div>
+            <div class="group__border"></div>
           </div>
+          <!-- group-2 -->
           <div class="group-2">
             <h2>Начало работы</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam sunt, iste animi, quia numquam, rerum
               veritatis itaque tempore facilis repellendus harum reiciendis.</p>
-            <ol>
+            <ol class="group-2__ol">
               <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique, doloribus, nulla. Soluta error
                 repudiandae cumque veniam fugiat, voluptatem repellat provident, pariatur.</li>
               <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis harum delectus nemo iure praesentium
@@ -162,7 +219,9 @@
               <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus aut nam earum! Lorem ipsum dolor
                 sit amet.</li>
             </ol>
+            <div class="group__border"></div>
           </div>
+          <!-- group-3 -->
           <div class="group-3">
             <h2>Дополнительная информация</h2>
             <div class="slider-text">
@@ -170,27 +229,33 @@
                 ducimus illo sed quo deserunt excepturi sunt non enim inventore aliquam esse asperiores ea dolorem
                 quibusdam est.</p>
             </div>
-            <div class="group-4">
-              <h2>Вам помогла эта статья?</h2>
-              <button>да</button>
-              <button>нет</button>
-              <p>50 людям помогла эта статья</p>
+            <div class="group__border"></div>
+          </div>
+          <div class="group-4">
+            <h2>Вам помогла эта статья?</h2>
+            <button>да</button>
+            <button>нет</button>
+            <p>50 людям помогла эта статья</p>
+          </div>
+          <div class="group-5">
+            <div class="group-5__left">
+              <h2>Сообщество GB</h2>
+              <p>Обращайтесь за помощью к членам сообщества, задавайте любые вопросы и получайте ответы.</p>
+              <a href="#">Присоединиться к сообществу</a>
             </div>
-            <div class="group-5">
-              <div class="group-5__left">
-                <h2>Сообщество GB</h2>
-                <p>Обращайтесь за помощью к членам сообщества, задавайте любые вопросы и получайте ответы.</p>
-                <a href="#">Присоединиться к сообществу</a>
-              </div>
-              <div class="group-5__right">
-                <h2>GB Connect</h2>
-                <p>Пользуйтесь всеми возможностями GB. Пройдите регистрацию в GB Connect.</p>
-                <a href="#">Регистрация</a>
-              </div>
+            <div class="group-5__right">
+              <h2>GB Connect</h2>
+              <p>Пользуйтесь всеми возможностями GB. Пройдите регистрацию в GB Connect.</p>
+              <a href="#">Регистрация</a>
             </div>
+
+          </div>
         </section>
       </main>
     </div>
+
+
+
   </div>
 
 </body>
