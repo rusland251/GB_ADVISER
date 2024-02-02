@@ -57,6 +57,7 @@
 
     <!-- nav main  -->
     <div class="nav-main__container">
+      <!-- nav -->
       <nav>
         <div class="nav-main">
           <ul class="nav-main__ul">
@@ -127,7 +128,7 @@
           </ul>
           <p class="nav-main__description">Информация</p>
           <ul class="nav-main__ul">
-            <li><a href="#">
+            <li class="baza-page"><a href="#">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10H10L10.0055 9.85074C10.0818 8.81588 10.9456 8 12 8C13.1046 8 14 8.89543 14 10C14 11.1046 13.1046 12 12 12C11.4477 12 11 12.4477 11 13V14C11 14.5523 11.4477 15 12 15C12.5523 15 13 14.5523 13 14V13.874C14.7252 13.4299 16 11.8638 16 10ZM13 18V16H11V18H13Z"
@@ -164,6 +165,8 @@
               </a></li>
           </ul>
         </div>
+        <div class="nav-main__border"></div>
+
         <div class="nav-right">
           <button class="button-back">
             <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -176,23 +179,24 @@
           <h1>Настройки профиля</h1>
           <div class="nav-right__block">
             <ul class="nav-right__block__ul">
-              <li><a href="#">Первичная настройка</a></li>
-              <li><a href="#">Профиль пользователя</a></li>
-              <li><a href="#">Изменение общих настроек</a></li>
-              <li><a href="#">Дополнительные возможности</a></li>
-              <li><a href="#">Отправка запросов</a></li>
-              <li><a href="#">Работа со стастистикой</a></li>
+              <li class="tb__btn-1 tb__btn"><a href="#">Первичная настройка</a></li>
+              <li class="tb__btn-2 tb__btn"><a href="#">Профиль пользователя</a></li>
+              <li class="tb__btn-3 tb__btn"><a href="#">Изменение общих настроек</a></li>
+              <li class="tb__btn-4 tb__btn"><a href="#">Дополнительные возможности</a></li>
+              <li class="tb__btn-5 tb__btn"><a href="#">Отправка запросов</a></li>
+              <li class="tb__btn-6 tb__btn"><a href="#">Работа со стастистикой</a></li>
             </ul>
           </div>
         </div>
       </nav>
+
       <!-- main -->
       <main class="text-block">
         <div class="text-block__search-input">
           <input class="text-block__search-input__input" type="text" placeholder="Поиск...">
         </div>
         <!-- text-block__page -->
-        <section class="text-block__page">
+        <section class="text-block__page tb__page-1">
           <!-- group-1 -->
           <div class="group-1">
             <h2>Первичная настройка</h2>
@@ -226,58 +230,257 @@
             <h2>Дополнительная информация</h2>
             <div class="slider-text">
               <div class="slider-text__btn-block">
-                <button class="slider-text__btn st__btn11">Пункт 11</button>
+                <button class="slider-text__btn st__btn11 st__active-btn">Пункт 11</button>
                 <button class="slider-text__btn st__btn10">Пункт 10</button>
                 <button class="slider-text__btn st__btn9">Пункт 9</button>
               </div>
               <div class="group__border_mt0"></div>
-              <p class="slider-text__page st__page11 st__active-page">Lorem ipsum dolor sit amet consectetur adipisicing
-                elit.
-                Distinctio facilis
-                minima necessitatibus
-                ducimus illo sed quo deserunt excepturi sunt non enim inventore aliquam esse asperiores ea dolorem
-                quibusdam est.</p>
-              <p class="slider-text__page st__page10">Lorem ipsum dolor sit amet consectetur adipisicing
-                elit.
-                Distinctio facilis
-                minima necessitatibus
-              </p>
-              <p class="slider-text__page st__page9">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-                quam quas
-                cumque, ab at necessitatibus eligendi architecto ratione nam! Voluptatibus doloribus sequi suscipit
-                optio dignissimos ipsa quam esse deserunt fuga?.</p>
+              <div class="slider-text__page st__page11 st__active-page">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                  elit. Distinctio facilis minima necessitatibus
+                  ducimus illo sed quo deserunt excepturi sunt non enim inventore aliquam esse asperiores ea dolorem
+                  quibusdam est.</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique, doloribus, nulla. Soluta error
+                  repudiandae cumque veniam fugiat.</p>
+              </div>
+              <div class="slider-text__page st__page10">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                  elit.
+                  Distinctio facilis
+                  minima necessitatibus</p>
+              </div>
+              <div class="slider-text__page st__page9">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
+                  quam quas
+                  cumque, ab at necessitatibus eligendi architecto ratione nam! Voluptatibus doloribus sequi suscipit
+                  optio dignissimos ipsa quam esse deserunt fuga?.</p>
+              </div>
             </div>
-            <div class="group__border"></div>
           </div>
-          <script src="./assets/scripts/slider_page_group-3.js"></script>
+          <div class="group__border"></div>
           <!-- group-4 -->
           <div class="group-4">
             <h2>Вам помогла эта статья?</h2>
-            <button>Да</button>
-            <button>Нет</button>
+            <div class="group-4__btns-block">
+              <button class="group-4__btn">Да</button>
+              <button class="group-4__btn">Нет</button>
+            </div>
             <p>50 людям помогла эта статья</p>
           </div>
-          <div class="group-5">
-            <div class="group-5__left">
-              <h2>Сообщество GB</h2>
-              <p>Обращайтесь за помощью к членам сообщества, задавайте любые вопросы и получайте ответы.</p>
-              <a href="#">Присоединиться к сообществу</a>
+        </section>
+        <section class="text-block__page tb__page-2">
+          <!-- group-1 -->
+          <div class="group-1">
+            <h2>Профиль пользователя</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis minima necessitatibus ducimus
+              illo sed quo deserunt excepturi sunt non enim inventore aliquam esse asperiores ea dolorem quibusdam
+              labore Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, dolore.
+              quos facere iusto, obcaecati doloremque aliquid est Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Doloribus, iusto Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa dignissimos, a quis
+              quo quaerat alias nemo incidunt ducimus nobis impedit dolorum ut adipisci deserunt sed unde obcaecati
+              nesciunt repellat eius, eum facilis itaque officiis magnam consequatur. Ex cumque molestiae quod? Nihil
+              necessitatibus distinctio cupiditate fugit. Ad accusantium architecto fuga tempore eveniet molestiae iure
+              nisi animi. Totam doloremque saepe facilis voluptatibus deleniti cum modi. Recusandae cum laudantium
+              veritatis, reiciendis mollitia eos fugiat? Explicabo ab perferendis enim tempore omnis. Blanditiis
+              explicabo esse id pariatur magnam at aut sunt sed voluptas laborum dicta, veniam expedita voluptate
+              sapiente commodi modi quo doloremque, nisi obcaecati...</p>
+            <div class="grey-background">
+              <p>Рекомендации:</p>
+              <p>Lorem ipsum dolor sit, amet, consectetur adipisicing elit. Fugiat.</p>
             </div>
-            <div class="group-5__right">
-              <h2>GB Connect</h2>
-              <p>Пользуйтесь всеми возможностями GB. Пройдите регистрацию в GB Connect.</p>
-              <a href="#">Регистрация</a>
+            <div class="group__border"></div>
+          </div>
+          <div class="group__border"></div>
+          <!-- group-4 -->
+          <div class="group-4">
+            <h2>Вам помогла эта статья?</h2>
+            <div class="group-4__btns-block">
+              <button class="group-4__btn">Да</button>
+              <button class="group-4__btn">Нет</button>
             </div>
-
+            <p>50 людям помогла эта статья</p>
           </div>
         </section>
+        <section class="text-block__page tb__page-3">
+          <!-- group-1 -->
+          <div class="group-1">
+            <h2>Изменение
+            </h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis minima necessitatibus ducimus
+              illo sed quo deserunt excepturi sunt non enim inventore aliquam esse asperiores ea dolorem quibusdam
+              labore
+              quos facere iusto, obcaecati doloremque aliquid est.</p>
+            <div class="group__border"></div>
+          </div>
+          <div class="group-1">
+            <h2>общих
+            </h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis minima necessitatibus ducimus
+              illo sed quo deserunt excepturi sunt non enim inventore aliquam esse asperiores ea dolorem quibusdam
+              labore
+              quos facere iusto, obcaecati doloremque aliquid est.</p>
+            <div class="group__border"></div>
+          </div>
+          <div class="group-1">
+            <h2> настроек
+            </h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis minima necessitatibus ducimus
+              illo sed quo deserunt excepturi sunt non enim inventore aliquam esse asperiores ea dolorem quibusdam
+              labore
+              quos facere iusto, obcaecati doloremque aliquid est.</p>
+            <div class="group__border"></div>
+          </div>
+          <!-- group-4 -->
+          <div class="group-4">
+            <h2>Вам помогла эта статья?</h2>
+            <div class="group-4__btns-block">
+              <button class="group-4__btn">Да</button>
+              <button class="group-4__btn">Нет</button>
+            </div>
+            <p>50 людям помогла эта статья</p>
+          </div>
+        </section>
+        <section class="text-block__page tb__page-4">
+          <!-- group-1 -->
+          <div class="group-1">
+            <h2>дополнительные</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis minima necessitatibus ducimus
+              illo sed quo deserunt excepturi sunt non enim inventore aliquam esse asperiores ea dolorem quibusdam
+              labore
+              quos facere iusto, obcaecati doloremque aliquid est.</p>
+            <div class="grey-background">
+              <p>Рекомендации:</p>
+              <p>Lorem ipsum dolor sit, amet, consectetur adipisicing elit. Fugiat.</p>
+            </div>
+            <div class="group__border"></div>
+          </div>
+          <div class="group-1">
+            <h2>возможности</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis minima necessitatibus ducimus
+              illo sed quo deserunt excepturi sunt non enim inventore aliquam esse asperiores ea dolorem quibusdam
+              labore
+              quos facere iusto, obcaecati doloremque aliquid est.</p>
+            <div class="grey-background">
+              <p>Рекомендации:</p>
+              <p>Lorem ipsum dolor sit, amet, consectetur adipisicing elit. Fugiat.</p>
+            </div>
+            <div class="group__border"></div>
+          </div>
+          <div class="group__border"></div>
+          <!-- group-4 -->
+          <div class="group-4">
+            <h2>Вам помогла эта статья?</h2>
+            <div class="group-4__btns-block">
+              <button class="group-4__btn">Да</button>
+              <button class="group-4__btn">Нет</button>
+            </div>
+            <p>50 людям помогла эта статья</p>
+          </div>
+        </section>
+        <section class="text-block__page tb__page-5">
+          <!-- group-1 -->
+          <div class="group-1">
+            <h2>Отправка Запрсов</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore maxime temporibus laudantium praesentium
+              culpa eum quasi, aut consectetur pariatur provident fugiat dolorum quidem! Omnis accusantium ab labore
+              perspiciatis facilis perferendis eaque repudiandae? Eos at doloribus nam? Similique, facilis qui optio
+              iure nam excepturi ratione odio perspiciatis error laudantium sed tempore repudiandae id in eum, officia,
+              vel sit! Itaque incidunt libero voluptate accusantium ducimus perspiciatis expedita minima ea magni
+              aspernatur excepturi nam atque, at delectus porro commodi? Dolore rem officiis velit alias neque ipsa
+              tempore ipsam odit eligendi culpa, est consectetur et delectus sed aspernatur ea labore eaque incidunt
+              nemo quibusdam nobis, dolorem tenetur? Reiciendis repudiandae aspernatur, praesentium temporibus corrupti
+              accusamus quibusdam ut, placeat, obcaecati at est quis! Neque deserunt dolorem consequuntur aliquid omnis
+              doloremque, sit doloribus a reiciendis necessitatibus totam repellendus? Dolorem nesciunt eligendi animi
+              atque ab cupiditate quam hic aspernatur debitis commodi et sit a, explicabo odio vero. Soluta
+              reprehenderit omnis explicabo aut quidem quis, molestias vero sequi! Vitae deleniti non eligendi sed est
+              placeat? Ut laborum, error voluptates voluptatibus consectetur asperiores cupiditate pariatur consequuntur
+              quas sapiente velit nam dolorem dolore eveniet similique neque optio nihil animi. Dicta ipsam nemo totam
+              libero deleniti! Voluptas perferendis aliquid ducimus molestiae ab aut sunt earum pariatur unde eum
+              veritatis consequatur quod officia nihil voluptatibus autem repellat accusantium tempora libero impedit
+              excepturi, modi obcaecati porro! Numquam similique repellendus accusamus at sint nam voluptates. Nisi vero
+              assumenda quaerat velit asperiores sequi totam necessitatibus dolorem molestiae, ea id similique maiores
+              odit doloribus qui. Repellat nihil blanditiis dolore reprehenderit deleniti velit porro alias hic dolorum
+              aut fugiat voluptatibus dicta nobis quas officia, voluptas dolor, delectus id, in eius culpa ratione
+              labore iste. Quo dolores iusto ipsa vel magni quibusdam molestiae sit accusamus voluptatum quas. Nisi
+              cupiditate maiores velit id vero laudantium nulla quia praesentium ducimus, numquam incidunt pariatur non
+              voluptatem dolorum aspernatur officia dolor aperiam a? Quam reiciendis fuga animi, dicta tempore quibusdam
+              consectetur voluptatem dolore earum unde dolorum dignissimos saepe ut suscipit optio debitis quod iusto.
+              Corporis natus eum numquam explicabo eligendi corrupti id quas optio ad. Deleniti nisi dignissimos ea modi
+              commodi, ipsa reiciendis quas porro molestias numquam odio sint sit dolore suscipit esse quis atque
+              explicabo culpa vel dolorum autem! Ipsa molestias saepe soluta, quo voluptas fuga, sit quidem vitae
+              voluptatum .</p>
+            <div class="group__border"></div>
+          </div>
+          <div class="group__border"></div>
+          <!-- group-4 -->
+          <div class="group-4">
+            <h2>Вам помогла эта статья?</h2>
+            <div class="group-4__btns-block">
+              <button class="group-4__btn">Да</button>
+              <button class="group-4__btn">Нет</button>
+            </div>
+            <p>50 людям помогла эта статья</p>
+          </div>
+        </section>
+        <section class="text-block__page tb__page-6">
+          <!-- group-1 -->
+          <div class="group-1">
+            <h2>Работа со Статистикой</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis minima necessitatibus ducimus
+              illo sed quo deserunt excepturi sunt non enim inventore aliquam esse asperiores ea dolorem quibusdam
+              labore
+              quos facere iusto, obcaecati doloremque aliquid est.</p>
+            <div class="grey-background">
+              <p>Рекомендации:</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat iste esse distinctio, nulla libero
+                fuga dolorem doloribus velit modi repellendus quae rem animi, quam aliquid veniam porro facere neque
+                aspernatur ut. Expedita corporis molestias esse quasi blanditiis provident impedit nihil ad maiores quia
+                corrupti necessitatibus adipisci laboriosam error facere explicabo amet eius labore perferendis culpa
+                accusantium dignissimos, pariatur suscipit veniam? Quos reiciendis, ipsa ipsum a nisi, culpa est facere
+                necessitatibus dicta explicabo quod distinctio totam? Officiis magni delectus quia consectetur similique
+                sit animi suscipit ducimus assumenda totam? Omnis harum impedit eaque voluptatum nostrum inventore
+                itaque ea delectus et cum. Explicabo ducimus quas sequi cum ut mollitia impedit quam ratione perferendis
+                voluptatem eveniet dicta debitis eos, accusamus vitae officia necessitatibus quidem atque iure amet at!
+                Animi repellat quae, consequatur illo enim iure consectetur deleniti, ratione quisquam quaerat error qui
+                nihil officiis, officia adipisci recusandae natus facilis dolorem eum unde ipsum. Qui et dicta ab
+                assumenda labore, ipsum tenetur magni illum in pariatur deleniti aperiam fugiat laudantium optio,
+                reprehenderit soluta dolorem neque iste quisquam. Corporis soluta sequi architecto asperiores
+                perspiciatis voluptatibus similique nemo sint magni rem dolor impedit aspernatur vitae, tempora, maiores
+                ipsa ducimus enim tempore! Libero dignissimos at nam neque distinctio? ipsum dolor sit, amet,
+                consectetur adipisicing elit. Fugiat.</p>
+            </div>
+            <div class="group__border"></div>
+          </div>
+          <div class="group-4">
+            <h2>Вам помогла эта статья?</h2>
+            <div class="group-4__btns-block">
+              <button class="group-4__btn">Да</button>
+              <button class="group-4__btn">Нет</button>
+            </div>
+            <p>50 людям помогла эта статья</p>
+          </div>
+        </section>
+        <script src="./assets/scripts/slider_page_group-3.js"></script>
+        <div class="group-5">
+          <div class="group-5__left group-5__blk">
+            <h2>Сообщество GB</h2>
+            <p>Обращайтесь за помощью к членам сообщества, задавайте любые вопросы и получайте ответы.</p>
+            <a href="#">Присоединиться к сообществу</a>
+          </div>
+          <div class="group-5__right group-5__blk">
+            <h2>GB Connect</h2>
+            <p>Пользуйтесь всеми возможностями GB. Пройдите регистрацию в GB Connect.</p>
+            <a href="#">Регистрация</a>
+          </div>
+
+        </div>
       </main>
     </div>
 
 
 
   </div>
-
+  <script src="./assets/scripts/script.js"></script>
 </body>
 
 </html>

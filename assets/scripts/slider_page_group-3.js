@@ -1,5 +1,4 @@
-// слайдер в блоке group-3 дополнительная информация
-
+// слайдер в блоке group-3 дополнительная информация slider-text (st)
 const btn11 = document.querySelector(".st__btn11");
 const btn10 = document.querySelector(".st__btn10");
 const btn9 = document.querySelector(".st__btn9");
