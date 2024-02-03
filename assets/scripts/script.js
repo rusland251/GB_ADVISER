@@ -33,7 +33,7 @@ const backButton = document.querySelector(".button-back");
 const navRightPage = document.querySelector(".nav-right");
 const textBlockPage = document.querySelector(".text-block");
 
-// ссылка  страница База Знаний
+// кнопка страница База Знаний
 const bazaPage = document.querySelector(".baza-page");
 
 // мерцание
@@ -63,6 +63,7 @@ backButton.addEventListener("click", () => hideRightNavByBackBtn());
 // кнопка База знаний открывает меню
 
 function toggleRightNav() {
+  console.time("База Знаний");
   if (document.querySelector(".nav-right_inactive")) {
     navRightPage.classList.remove("nav-right_inactive");
     shiningEffect();
@@ -70,8 +71,18 @@ function toggleRightNav() {
     navRightPage.classList.add("nav-right_inactive");
     shiningEffect();
   }
+  console.timeEnd("База Знаний");
 }
 bazaPage.addEventListener("click", () => toggleRightNav());
 
 // pop up
 // перенести скрипт в отдельную папку
+
+const userBtn = document.querySelector(".header__user-block__user");
+const userPopUp = document.querySelector(".header-user__pop-up");
+
+function toogleUserPopUp() {
+  userPopUp.classList.toggle("header-user__pop-up_active");
+}
+
+userBtn.addEventListener("click", () => toogleUserPopUp());

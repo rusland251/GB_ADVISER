@@ -40,6 +40,7 @@ height: 68px;
 position: fixed;
 z-index: 20;
 box-shadow: 0px 1px 4px 0px #15223214 ;
+max-width: 1559px;
 }
 
 .header__logo{
@@ -122,6 +123,26 @@ padding-left: 12px;
 padding-right: 18px;
 }
 
+/* header-user pop-up */
+
+.header-user__pop-up{
+  width: 0;
+  height: 0;
+  position: absolute;
+  background-color: pink;
+  transition:all 500ms;
+}
+
+.header-user__pop-up_active{
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  background-color: pink;
+  top: 100px;
+  z-index: 50;
+
+}
+
 
 /* nav main */
 
@@ -199,9 +220,10 @@ nav{
   width: 300px;
   padding-top: 29px;
   margin-left: 40px;
+  padding-right: 30px;
+  z-index: 0;
   transition:
   margin-left 500ms;
-  z-index: 0;
 }
 
 .nav-right > h1{
@@ -222,6 +244,8 @@ cursor:pointer;
 
 .nav-right_inactive{
   margin-left: -250px;
+  padding-right: 250px;
+  text-wrap: nowrap;
 }
 
 .nav-right__block__ul{
@@ -258,23 +282,9 @@ cursor:pointer;
 
 .text-block{
   margin-top: 72px;
-  /* margin-left: 573px; */
   margin-right: 0;
-  /* transition: 
-  margin-left 500ms,
-  margin-right 500ms
-  ; */
 }
 
-.text-block_center{
-
-  /* margin-left: 420px;
-  margin-right: 153px; */
-/* другой вариант 
-  margin-left: 350px;
-  margin-right: 83px;  
- */
-}
 
 
 .text-block__search-input{
