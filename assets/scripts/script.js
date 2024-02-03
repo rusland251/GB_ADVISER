@@ -1,26 +1,27 @@
-// страницы базы знаний text-block (tb)
+// страницы базы знанийtb__ text-block (tb)
 
-const tbPage = document.querySelectorAll(".text-block__page");
-const tbBtn = document.querySelectorAll(".tb__btn");
+const tbPages = document.querySelectorAll(".text-block__page");
+const nrBtn = document.querySelectorAll(".nr__btn");
 
 // показывать первуюстраницу блока База Знаний
 if (!document.querySelector(".tb__active-page")) {
-  tbPage[0].classList.add("tb__active-page");
+  tbPages[0].classList.add("tb__active-page");
+  nrBtn[0].classList.add("nr__active-btn");
 }
-// const tbActivePage = document.querySelector(".tb__active-page");
-console.log();
+
 function showPage(btn) {
   if (!btn.classList.contains(".tb__active-btn")) {
-    for (let i = 0; i < tbBtn.length; i++) {
-      tbPage[i].classList.remove("tb__active-page");
-      if (btn.classList.contains(`tb__btn-${i + 1}`)) {
-        btn.classList.add("tb__active-btn");
-        tbPage[i].classList.add("tb__active-page");
+    for (let i = 0; i < nrBtn.length; i++) {
+      tbPages[i].classList.remove("tb__active-page");
+      nrBtn[i].classList.remove("nr__active-btn");
+      if (btn.classList.contains(`nr__btn-${i + 1}`)) {
+        btn.classList.add("nr__active-btn");
+        tbPages[i].classList.add("tb__active-page");
       }
     }
   }
 }
-tbBtn.forEach(function (btn) {
+nrBtn.forEach(function (btn) {
   // Вешаем событие клик на кнопки меню
   btn.addEventListener("click", () => {
     showPage(btn);
@@ -42,8 +43,8 @@ function shiningEffect() {
   tbActivePage.classList.remove("tb__active-page");
   tbActivePage.classList.add("tb__active-page_opacity");
   setTimeout(() => {
-    for (let i = 0; i < tbPage.length; i++) {
-      if (tbActivePage === tbPage[i]) {
+    for (let i = 0; i < tbPages.length; i++) {
+      if (tbActivePage === tbPages[i]) {
         tbActivePage.classList.remove("tb__active-page_opacity");
         tbActivePage.classList.add("tb__active-page");
       }
@@ -86,3 +87,54 @@ function toogleUserPopUp() {
 }
 
 userBtn.addEventListener("click", () => toogleUserPopUp());
+
+// меню в мобильной версии
+const mobMenuBtn = document.querySelector(".mob-menu-btn");
+const navPage = document.querySelector(".nav");
+const header = document.querySelector(".header");
+const screenWidth = window.screen.width;
+// document.body.style.maxHeight = `${block.offsetHeight}px`;
+mobMenuBtn.addEventListener("click", () => toogleMobMenuBtn());
+
+function toogleMobMenuBtn() {
+  if (!document.querySelector(".nav_active")) {
+    navPage.classList.add("nav_active");
+    console.log(textBlockPage.scrollHeight);
+    if (screenWidth <= 576) {
+      // закидываю в сторэдж значение прокрутки по оси Y и вычитаю выстоу хедера 68
+      localStorage.setItem("pageScrollY", JSON.stringify(window.scrollY - 68));
+      let rslt = navPage.offsetHeight - header.offsetHeight;
+      textBlockPage.style.maxHeight = `${rslt}px`;
+      // textBlockPage.style.marginTop = `-${textBlockPage.scrollHeight - rslt}px`;
+    }
+  } else {
+    navPage.classList.remove("nav_active");
+    if (screenWidth <= 576) {
+      const pageScrollY = localStorage.getItem("pageScrollY");
+      console.log(pageScrollY);
+      textBlockPage.style.maxHeight = `100%`;
+      textBlockPage.style.marginTop = `72px`;
+      window.scrollBy(0, pageScrollY);
+    }
+  }
+}
+
+// подмненю в моб версии убирается
+
+// let elY = 0;
+// let scrollY = 0;
+// window.addEventListener("scroll", function () {
+//   const el = document.querySelector(".header");
+//   const height = el.offsetHeight;
+//   const pos = window.scrollY;
+//   const diff = scrollY - pos;
+//   console.log(height);
+//   elY = Math.min(0, Math.max(-height, elY + diff));
+//   el.style.position =
+//     pos >= height ? "fixed" : pos === 0 ? "absolute" : el.style.position;
+//   el.style.transform = `translateY(${
+//     el.style.position === "fixed" ? elY : 0
+//   }px)`;
+
+//   scrollY = pos;
+// });
