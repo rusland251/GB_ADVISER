@@ -59,9 +59,11 @@ function shiningEffect() {
 
 // кнопка назад закрывает меню
 function hideRightNavByBackBtn() {
-  if (navRightPage) {
+  if (navRightPage && screenWidth > 576) {
     navRightPage.classList.add("nav-right_inactive");
     shiningEffect();
+  } else {
+    toogleMobMenuBtn();
   }
 }
 backButton.addEventListener("click", () => hideRightNavByBackBtn());
@@ -291,13 +293,15 @@ function handleTouchMove(event) {
 
   // Проверяем, был ли свайп влево
   if (Math.abs(diffX) > Math.abs(diffY) && diffX > 0) {
-    toNextPage();
+    if (document.querySelector(".nav_active")) {
+      toogleMobMenuBtn();
+    }
   }
-
   // Проверяем, был ли свайп вправо
   if (Math.abs(diffX) > Math.abs(diffY) && diffX < 0) {
-    // Закрываем элемент "nav"
-    toPrevPage();
+    if (!document.querySelector(".nav_active")) {
+      toogleMobMenuBtn();
+    }
   }
 
   // Сбрасываем начальные координаты
