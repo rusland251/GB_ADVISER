@@ -16,7 +16,7 @@ function showPage(btn) {
       nrBtn[i].classList.remove("nr__active-btn");
       if (btn.classList.contains(`nr__btn-${i + 1}`)) {
         btn.classList.add("nr__active-btn");
-        if (screenWidth <= 576) {
+        if (screenWidth <= 1100) {
           navPage.classList.remove("nav_active");
           mobNavContainer.classList.remove("mob_nav-container_active");
           document.querySelector("body").style.overflow = "auto";
@@ -24,6 +24,7 @@ function showPage(btn) {
         tbPages[i].classList.add("tb__active-page");
       }
     }
+    testBtnNavBottom();
   }
 }
 nrBtn.forEach(function (btn) {
@@ -72,6 +73,7 @@ backButton.addEventListener("click", () => hideRightNavByBackBtn());
 
 function toggleRightNav() {
   if (document.querySelector(".nav-right_inactive")) {
+    navRightPage.style.height = `${navPage.scrollHeight}px`;
     navRightPage.classList.remove("nav-right_inactive");
     shiningEffect();
   } else {
@@ -85,13 +87,22 @@ bazaPage.addEventListener("click", () => toggleRightNav());
 // перенести скрипт в отдельную папку
 
 const userBtn = document.querySelector(".header__user-block__user");
-const userPopUp = document.querySelector(".header-user__pop-up");
+const userPopUp = document.querySelector(".user__pop-up");
+const userContainer = document.querySelector(".container__user__pop-up");
+const userBtnSvg = document.querySelector(".header__user-block__svg");
 
-function toogleUserPopUp() {
-  userPopUp.classList.toggle("header-user__pop-up_active");
+function toggleUserPopUp() {
+  userPopUp.classList.toggle("user__pop-up_active");
+  userContainer.classList.toggle("container__user__pop-up_active");
+  if (userBtnSvg.style.transform === "rotate(0.5turn)") {
+    userBtnSvg.style.transform = "none";
+  } else {
+    userBtnSvg.style.transform = "rotate(0.5turn)";
+  }
 }
 
-userBtn.addEventListener("click", () => toogleUserPopUp());
+userBtn.addEventListener("click", () => toggleUserPopUp());
+userContainer.addEventListener("click", () => toggleUserPopUp());
 
 // меню в мобильной версии
 const mobMenuBtn = document.querySelector(".mob-menu-btn");
@@ -151,8 +162,12 @@ window.addEventListener("scroll", function () {
   // }
 
   header.style.transform = `translateY(${pos >= height ? elY : 0}px)`;
+  userPopUp.style.transform = `translateY(${pos >= height ? elY : 0}px)`;
 
   scrollY = pos;
+  if (document.querySelector(".user__pop-up_active")) {
+    toggleUserPopUp();
+  }
 });
 
 // Прокрутка страницы
@@ -204,20 +219,18 @@ mnbNavigate.addEventListener("click", () => {
 // проверка на кнопки
 
 function testBtnNavBottom() {
-  if (screenWidth <= 576) {
-    if (document.querySelector(".tb__active-page") === tbPages[0]) {
-      mnbLeftBtn.style.visibility = "hidden";
-    } else {
-      mnbLeftBtn.style.visibility = "visible";
-    }
+  if (document.querySelector(".tb__active-page") === tbPages[0]) {
+    mnbLeftBtn.style.visibility = "hidden";
+  } else {
+    mnbLeftBtn.style.visibility = "visible";
+  }
 
-    if (
-      document.querySelector(".tb__active-page") === tbPages[tbPages.length - 1]
-    ) {
-      mnbRightBtn.style.visibility = "hidden";
-    } else {
-      mnbRightBtn.style.visibility = "visible";
-    }
+  if (
+    document.querySelector(".tb__active-page") === tbPages[tbPages.length - 1]
+  ) {
+    mnbRightBtn.style.visibility = "hidden";
+  } else {
+    mnbRightBtn.style.visibility = "visible";
   }
 }
 testBtnNavBottom();
@@ -260,14 +273,9 @@ function searchOnPage(event) {
   }
 }
 
-// свайп влево
-
 // Добавляем обработчик события для поля ввода
 const searchInput = document.querySelector(".text-block__search-input__input");
 searchInput.addEventListener("keydown", searchOnPage);
-
-// var searchButton = document.querySelector(".text-block__search-input");
-// searchButton.addEventListener("click", searchOnPage);
 
 // Устанавливаем начальные координаты для обработки свайпа
 let startX = 0;
