@@ -1,9 +1,9 @@
-// страницы базы знанийtb__ text-block (tb)
+// страницы базы знаний tb__ text-block (tb)
 
 const tbPages = document.querySelectorAll(".text-block__page");
 const nrBtn = document.querySelectorAll(".nr__btn");
 
-// показывать первуюстраницу блока База Знаний
+// показывать первую страницу блока База Знаний
 if (!document.querySelector(".tb__active-page")) {
   tbPages[0].classList.add("tb__active-page");
   nrBtn[0].classList.add("nr__active-btn");
@@ -110,7 +110,7 @@ const navPage = document.querySelector(".nav");
 const header = document.querySelector(".header");
 const screenWidth = window.screen.width;
 const mobNavContainer = document.querySelector(".mob_nav-container");
-// document.body.style.maxHeight = `${block.offsetHeight}px`;
+
 mobNavContainer.addEventListener("click", () => toogleMobMenuBtn());
 mobMenuBtn.addEventListener("click", () => toogleMobMenuBtn());
 
@@ -120,25 +120,10 @@ function toogleMobMenuBtn() {
     navRightPage.classList.add("nav-right_inactive");
     document.querySelector("body").style.overflow = "hidden";
     mobNavContainer.classList.add("mob_nav-container_active");
-    // console.log(textBlockPage.scrollHeight);
-    // if (screenWidth <= 576) {
-    // закидываю в сторэдж значение прокрутки по оси Y и вычитаю выстоу хедера 68
-    localStorage.setItem("pageScrollY", JSON.stringify(window.scrollY - 68));
-    //   let rslt = navPage.offsetHeight - header.offsetHeight;
-    //   textBlockPage.style.maxHeight = `${rslt}px`;
-    //   // textBlockPage.style.marginTop = `-${textBlockPage.scrollHeight - rslt}px`;
-    // }
   } else {
     navPage.classList.remove("nav_active");
     document.querySelector("body").style.overflow = "auto";
     mobNavContainer.classList.remove("mob_nav-container_active");
-    // if (screenWidth <= 576) {
-    // const pageScrollY = localStorage.getItem("pageScrollY");
-    // console.log(pageScrollY);
-    //   textBlockPage.style.maxHeight = `100%`;
-    //   textBlockPage.style.marginTop = `72px`;
-    // window.scrollBy(0, pageScrollY);
-    // }
   }
 }
 
@@ -154,23 +139,15 @@ window.addEventListener("scroll", function () {
   const pos = window.scrollY; // позиция скрола
   const diff = scrollY - pos;
   elY = Math.min(0, Math.max(-height, elY + diff));
-
-  // if (pos >= height) {
-  //   header.style.position = "fixed";
-  // } else {
-  //   header.style.position = header.style.position;
-  // }
-
   header.style.transform = `translateY(${pos >= height ? elY : 0}px)`;
   userPopUp.style.transform = `translateY(${pos >= height ? elY : 0}px)`;
-
   scrollY = pos;
   if (document.querySelector(".user__pop-up_active")) {
     toggleUserPopUp();
   }
 });
 
-// Прокрутка страницы
+// Перелистывание  страниц
 
 const mnbLeftBtn = document.querySelector(".mnb__left-btn");
 const mnbRightBtn = document.querySelector(".mnb__right-btn");
@@ -203,7 +180,6 @@ function toPrevPage() {
       tbPages[i - 1].classList.add("tb__active-page");
       nrBtn[i].classList.remove("nr__active-btn");
       nrBtn[i - 1].classList.add("nr__active-btn");
-      // mnbRightBtn.style.visibility = "visible";
       window.scrollTo(0, 0);
       testBtnNavBottom();
     }
@@ -235,46 +211,77 @@ function testBtnNavBottom() {
 }
 testBtnNavBottom();
 
-// поиск по странице
+// поиск по странице tb-page
+
+const createSearhMenu = (pageName, findText) =>
+  `<div class="search-page">
+<div class="page-name">${pageName}</div>
+<div class="find-text">${findText}</div>
+</div> `;
+
+function findingText(text, highlightedWord) {
+  const sentences = text.split(". ");
+  for (let i = 0; i < sentences.length; i++) {
+    const sentence = sentences[i];
+    if (sentence.includes(highlightedWord)) {
+      return sentence.replace(
+        highlightedWord,
+        `<span style="background-color: yellow;">${highlightedWord}</span>`
+      );
+    }
+  }
+  return "";
+}
 
 function searchOnPage(event) {
-  // Проверяем, была ли нажата клавиша Enter
   if (event.key === "Enter") {
-    // Получаем значение поля ввода
-    const searchText = document.querySelector(
-      ".text-block__search-input__input"
-    ).value;
+    const searchText = document
+      .querySelector(".text-block__search-input__input")
+      .value.toLowerCase();
 
-    // Получаем все элементы <p> на странице
     const paragraphs = document.getElementsByTagName("p");
+    const headings = document.getElementsByTagName("h2");
+    const newParagraphs = [];
+    const newHeadings = [];
+    // console.log(tbPages[0].innerText);
 
-    // Проходимся по каждому элементу и проверяем наличие искомого текста
-    for (let i = 0; i < paragraphs.length; i++) {
-      const paragraph = paragraphs[i];
-      let text = paragraph.innerText;
-
-      // Разделяем текст на отдельные слова
+    for (let i = 0; i < tbPages.length; i++) {
+      let text = tbPages[i].innerText;
       const words = text.split(" ");
-
-      // Проходимся по каждому слову и проверяем, содержит ли оно искомую фразу
       for (let j = 0; j < words.length; j++) {
         const word = words[j];
-
-        // Если слово содержит искомую фразу, выделяем его с помощью тега <mark>
-        if (word.includes(searchText)) {
+        if (word.toLowerCase().includes(searchText)) {
           const highlightedWord = "<mark>" + word + "</mark>";
           text = text.replace(word, highlightedWord);
+          const findText = findingText(text, highlightedWord);
+          const pageName =
+            i === 0
+              ? "Первичная настройка"
+              : i === 1
+              ? "Профиль пользователя"
+              : i === 2
+              ? "Изменение общих настроек"
+              : i === 3
+              ? "Дополнительные возможности"
+              : i === 4
+              ? "Отпраавка запросов"
+              : i === 5
+              ? "Работа со статистикой"
+              : "Некорректное значение";
+          const rslt = createSearhMenu(pageName, findText);
+          const searchBlock = document.querySelector(".search-page-container");
+          let newDiv = document.createElement("div");
+          newDiv.innerHTML = rslt;
+          searchBlock.appendChild(newDiv);
         }
       }
-
-      // Заменяем исходный текст на текст с выделенными словами
-      paragraph.innerHTML = text;
     }
   }
 }
 
 // Добавляем обработчик события для поля ввода
 const searchInput = document.querySelector(".text-block__search-input__input");
+
 searchInput.addEventListener("keydown", searchOnPage);
 
 // Устанавливаем начальные координаты для обработки свайпа
