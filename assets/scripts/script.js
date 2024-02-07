@@ -34,7 +34,8 @@ nrBtn.forEach(function (btn) {
   });
 });
 
-// страница База Знаний
+/ /; /////////////////////////////////////////////////////////////////////////////////////
+// страница База (настройки профиля)
 
 const backButton = document.querySelector(".button-back");
 const navRightPage = document.querySelector(".nav-right");
@@ -109,25 +110,28 @@ const notifPage = document.querySelector(".notifications-page");
 const notifPageContainer = document.querySelector(
   ".notifications-page-container"
 );
+const notifBtn = document.querySelector(".header__user-block__notifications");
 
 function toggleNotifPage() {
+  console.log("asd");
   notifPage.classList.toggle("notifications-page_active");
   notifPageContainer.classList.toggle("container__notifications-page_active");
 }
 
-notifPage.addEventListener("click", () => toggleNotifPage());
+notifBtn.addEventListener("click", () => toggleNotifPage());
 notifPageContainer.addEventListener("click", () => toggleNotifPage());
 
 // //////////////////////////////////////////////////////////////////////////////////////
 const chatPage = document.querySelector(".chat-page");
 const chatPageContainer = document.querySelector(".chat-page-container");
+const chatBtn = document.querySelector(".header__user-block__chat");
 
 function toggleChatPage() {
   chatPage.classList.toggle("chat-page_active");
   chatPageContainer.classList.toggle("container__chat-page_active");
 }
 
-chatPage.addEventListener("click", () => toggleChatPage());
+chatBtn.addEventListener("click", () => toggleChatPage());
 chatPageContainer.addEventListener("click", () => toggleChatPage());
 
 // //////////////////////////////////////////////////////////////////////////////////////
@@ -154,7 +158,7 @@ function toogleMobMenuBtn() {
     mobNavContainer.classList.remove("mob_nav-container_active");
   }
 }
-
+/ /; /////////////////////////////////////////////////////////////////////////////////////
 // подмненю в моб версии убирается
 
 let elY = 0;
@@ -173,8 +177,18 @@ window.addEventListener("scroll", function () {
   if (document.querySelector(".user__pop-up_active")) {
     toggleUserPopUp();
   }
+  if (document.querySelector(".notifications-page_active")) {
+    toggleNotifPage();
+  }
+  if (document.querySelector(".chat-page_active")) {
+    toggleChatPage();
+  }
+  if (document.querySelector(".user__pop-up_active")) {
+    toggleUserPopUp();
+  }
 });
 
+/ /; /////////////////////////////////////////////////////////////////////////////////////
 // Перелистывание  страниц
 
 const mnbLeftBtn = document.querySelector(".mnb__left-btn");
@@ -219,6 +233,7 @@ mnbNavigate.addEventListener("click", () => {
   toggleRightNav();
 });
 
+/ /; /////////////////////////////////////////////////////////////////////////////////////
 // проверка на кнопки
 
 function testBtnNavBottom() {
@@ -238,7 +253,8 @@ function testBtnNavBottom() {
 }
 testBtnNavBottom();
 
-// поиск по странице tb-page
+/ /; /////////////////////////////////////////////////////////////////////////////////////
+// поиск по странице
 
 const createSearhMenu = (pageName, findText, num) =>
   `<div class="search-page-blk search-page-${num}">
@@ -261,51 +277,67 @@ function findingText(text, highlightedWord) {
   return "";
 }
 
-function searchOnPage(event) {
-  if (event.key === "Enter") {
-    const searchText = document
-      .querySelector(".text-block__search-input__input")
-      .value.toLowerCase();
+// блок отдельно выделил на цикл по проверке слов в тексте и строительство блоков
+function checkWordsOnPage(searchText) {
+  const searchBlock = document.querySelector(".search-page");
+  searchBlock.innerHTML = "";
+  searchBlock.style.display = "flex";
+  searchBlock.style.position = "static";
 
-    const searchBlock = document.querySelector(".search-page");
-    searchBlock.innerHTML = "";
-    searchBlock.style.display = "flex";
-    searchBlock.style.position = "absolute";
+  for (let i = 0; i < tbPages.length; i++) {
+    let text = tbPages[i].innerText;
+    const words = text.split(/\s+/);
+    for (let j = 0; j < words.length; j++) {
+      const word = words[j];
+      if (word.toLowerCase() === searchText.toLowerCase()) {
+        const highlightedWord = `<span style="background-color: yellow;">${word}</span>`;
+        text = text.replace(word, highlightedWord);
+        const findText = findingText(text, highlightedWord);
+        const pageName =
+          i === 0
+            ? "Первичная настройка"
+            : i === 1
+            ? "Профиль пользователя"
+            : i === 2
+            ? "Изменение общих настроек"
+            : i === 3
+            ? "Дополнительные возможности"
+            : i === 4
+            ? "Отправка запросов"
+            : i === 5
+            ? "Работа со статистикой"
+            : "Некорректное значение";
+        const rslt = createSearhMenu(pageName, findText, i + 1);
 
-    for (let i = 0; i < tbPages.length; i++) {
-      let text = tbPages[i].innerText;
-      // const words = text.split(" ");
-      const words = text.split(/\s+/);
-      for (let j = 0; j < words.length; j++) {
-        const word = words[j];
-        if (word.toLowerCase() === searchText.toLowerCase()) {
-          const highlightedWord = `<span style="background-color: yellow;">${word}</span>`;
-          text = text.replace(word, highlightedWord);
-          const findText = findingText(text, highlightedWord);
-          const pageName =
-            i === 0
-              ? "Первичная настройка"
-              : i === 1
-              ? "Профиль пользователя"
-              : i === 2
-              ? "Изменение общих настроек"
-              : i === 3
-              ? "Дополнительные возможности"
-              : i === 4
-              ? "Отправка запросов"
-              : i === 5
-              ? "Работа со статистикой"
-              : "Некорректное значение";
-          const rslt = createSearhMenu(pageName, findText, i + 1);
-
-          let newDiv = document.createElement("div");
-          newDiv.innerHTML = rslt;
-          searchBlock.appendChild(newDiv);
-          j = words.length - 1;
-        }
+        let newDiv = document.createElement("div");
+        newDiv.innerHTML = rslt;
+        searchBlock.appendChild(newDiv);
+        j = words.length - 1;
       }
     }
   }
+}
+
+function searchOnPage(event) {
+  if (
+    (event.key === "Enter" && event.target === searchInputBtn) ||
+    (event.type === "click" && event.target === searchInputBtn)
+  ) {
+    console.log();
+    const searchText = document
+      .querySelector(".search-input__input")
+      .value.toLowerCase();
+    checkWordsOnPage(searchText);
+  }
+  if (event.key === "Enter" && event.target != searchInputBtn) {
+    console.log("asdasd");
+    const searchText = event.target.value.toLowerCase();
+    searchInput.value = searchText;
+    checkWordsOnPage(searchText);
+    searchPageContainer.classList.add("search-page-container_active");
+    searchPageForm.classList.add("search-page-form_active");
+  }
+
   // ссылки на страницу из поиска
   const searchPageLinks = document.querySelectorAll(".search-page-blk");
   searchPageLinks.forEach(function (link) {
@@ -315,6 +347,8 @@ function searchOnPage(event) {
           showPage(nrBtn[i]);
           document.querySelector(".search-page").innerHTML = "";
           document.querySelector(".search-page").style.display = "none";
+          searchPageContainer.classList.remove("search-page-container_active");
+          searchPageForm.classList.remove("search-page-form_active");
         }
       }
     });
@@ -322,9 +356,32 @@ function searchOnPage(event) {
 }
 
 // Добавляем обработчик события для поля ввода
-const searchInput = document.querySelector(".text-block__search-input__input");
+const tbSearchInput = document.querySelector(
+  ".text-block__search-input__input"
+);
+const headerSearchInput = document.querySelector(
+  ".header__search-input__input"
+);
+const mobHeaderSearch = document.querySelector(".header__search__mob");
+const searchInput = document.querySelector(".search-input__input");
+const searchInputBtn = document.querySelector(".search-input__btn");
+const searchPageContainer = document.querySelector(".search-page-container");
+const searchPageForm = document.querySelector(".search-page-form");
 
 searchInput.addEventListener("keydown", searchOnPage);
+searchInputBtn.addEventListener("click", searchOnPage);
+
+tbSearchInput.addEventListener("keydown", searchOnPage);
+headerSearchInput.addEventListener("keydown", searchOnPage);
+mobHeaderSearch.addEventListener("click", showSearch);
+searchPageContainer.addEventListener("click", showSearch);
+
+function showSearch() {
+  searchPageContainer.classList.toggle("search-page-container_active");
+  searchPageForm.classList.toggle("search-page-form_active");
+}
+
+/ /; /////////////////////////////////////////////////////////////////////////////////////
 
 // Устанавливаем начальные координаты для обработки свайпа
 let startX = 0;
