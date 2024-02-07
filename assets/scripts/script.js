@@ -213,7 +213,7 @@ testBtnNavBottom();
 
 // поиск по странице tb-page
 
-const createSearhMenu = (pageName, findText) =>
+const createSearhMenu = (pageName, findText, num) =>
   `<div class="search-page">
 <div class="page-name">${pageName}</div>
 <div class="find-text">${findText}</div>
@@ -239,19 +239,18 @@ function searchOnPage(event) {
       .querySelector(".text-block__search-input__input")
       .value.toLowerCase();
 
-    const paragraphs = document.getElementsByTagName("p");
-    const headings = document.getElementsByTagName("h2");
-    const newParagraphs = [];
-    const newHeadings = [];
-    // console.log(tbPages[0].innerText);
+    const searchBlock = document.querySelector(".search-page-container");
+    searchBlock.innerHTML = "";
 
     for (let i = 0; i < tbPages.length; i++) {
       let text = tbPages[i].innerText;
-      const words = text.split(" ");
+      // const words = text.split(" ");
+      const words = text.split(/\s+/);
+      console.log(words);
       for (let j = 0; j < words.length; j++) {
         const word = words[j];
         if (word.toLowerCase().includes(searchText)) {
-          const highlightedWord = "<mark>" + word + "</mark>";
+          const highlightedWord = `<span style="background-color: yellow;">${word}</span>`;
           text = text.replace(word, highlightedWord);
           const findText = findingText(text, highlightedWord);
           const pageName =
@@ -264,15 +263,16 @@ function searchOnPage(event) {
               : i === 3
               ? "Дополнительные возможности"
               : i === 4
-              ? "Отпраавка запросов"
+              ? "Отправка запросов"
               : i === 5
               ? "Работа со статистикой"
               : "Некорректное значение";
-          const rslt = createSearhMenu(pageName, findText);
-          const searchBlock = document.querySelector(".search-page-container");
+          const rslt = createSearhMenu(pageName, findText, i);
+
           let newDiv = document.createElement("div");
           newDiv.innerHTML = rslt;
           searchBlock.appendChild(newDiv);
+          j = words.length - 1;
         }
       }
     }
