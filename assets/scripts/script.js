@@ -83,7 +83,7 @@ function toggleRightNav() {
 }
 bazaPage.addEventListener("click", () => toggleRightNav());
 
-// pop up
+// pop up для user notifications chat
 // перенести скрипт в отдельную папку
 
 const userBtn = document.querySelector(".header__user-block__user");
@@ -103,6 +103,34 @@ function toggleUserPopUp() {
 
 userBtn.addEventListener("click", () => toggleUserPopUp());
 userContainer.addEventListener("click", () => toggleUserPopUp());
+
+// //////////////////////////////////////////////////////////////////////////////////////
+const notifPage = document.querySelector(".notifications-page");
+const notifPageContainer = document.querySelector(
+  ".notifications-page-container"
+);
+
+function toggleNotifPage() {
+  notifPage.classList.toggle("notifications-page_active");
+  notifPageContainer.classList.toggle("container__notifications-page_active");
+}
+
+notifPage.addEventListener("click", () => toggleNotifPage());
+notifPageContainer.addEventListener("click", () => toggleNotifPage());
+
+// //////////////////////////////////////////////////////////////////////////////////////
+const chatPage = document.querySelector(".chat-page");
+const chatPageContainer = document.querySelector(".chat-page-container");
+
+function toggleChatPage() {
+  chatPage.classList.toggle("chat-page_active");
+  chatPageContainer.classList.toggle("container__chat-page_active");
+}
+
+chatPage.addEventListener("click", () => toggleChatPage());
+chatPageContainer.addEventListener("click", () => toggleChatPage());
+
+// //////////////////////////////////////////////////////////////////////////////////////
 
 // меню в мобильной версии
 const mobMenuBtn = document.querySelector(".mob-menu-btn");
@@ -187,7 +215,6 @@ function toPrevPage() {
 }
 
 mnbNavigate.addEventListener("click", () => {
-  console.log("asdas");
   toogleMobMenuBtn();
   toggleRightNav();
 });
@@ -214,11 +241,12 @@ testBtnNavBottom();
 // поиск по странице tb-page
 
 const createSearhMenu = (pageName, findText, num) =>
-  `<div class="search-page">
+  `<div class="search-page-blk search-page-${num}">
 <div class="page-name">${pageName}</div>
 <div class="find-text">${findText}</div>
 </div> `;
 
+// для поиска по предложениям
 function findingText(text, highlightedWord) {
   const sentences = text.split(". ");
   for (let i = 0; i < sentences.length; i++) {
@@ -239,17 +267,18 @@ function searchOnPage(event) {
       .querySelector(".text-block__search-input__input")
       .value.toLowerCase();
 
-    const searchBlock = document.querySelector(".search-page-container");
+    const searchBlock = document.querySelector(".search-page");
     searchBlock.innerHTML = "";
+    searchBlock.style.display = "flex";
+    searchBlock.style.position = "absolute";
 
     for (let i = 0; i < tbPages.length; i++) {
       let text = tbPages[i].innerText;
       // const words = text.split(" ");
       const words = text.split(/\s+/);
-      console.log(words);
       for (let j = 0; j < words.length; j++) {
         const word = words[j];
-        if (word.toLowerCase().includes(searchText)) {
+        if (word.toLowerCase() === searchText.toLowerCase()) {
           const highlightedWord = `<span style="background-color: yellow;">${word}</span>`;
           text = text.replace(word, highlightedWord);
           const findText = findingText(text, highlightedWord);
@@ -267,7 +296,7 @@ function searchOnPage(event) {
               : i === 5
               ? "Работа со статистикой"
               : "Некорректное значение";
-          const rslt = createSearhMenu(pageName, findText, i);
+          const rslt = createSearhMenu(pageName, findText, i + 1);
 
           let newDiv = document.createElement("div");
           newDiv.innerHTML = rslt;
@@ -277,6 +306,19 @@ function searchOnPage(event) {
       }
     }
   }
+  // ссылки на страницу из поиска
+  const searchPageLinks = document.querySelectorAll(".search-page-blk");
+  searchPageLinks.forEach(function (link) {
+    link.addEventListener("click", () => {
+      for (let i = 0; i < searchPageLinks.length; i++) {
+        if (searchPageLinks[i] === link) {
+          showPage(nrBtn[i]);
+          document.querySelector(".search-page").innerHTML = "";
+          document.querySelector(".search-page").style.display = "none";
+        }
+      }
+    });
+  });
 }
 
 // Добавляем обработчик события для поля ввода
