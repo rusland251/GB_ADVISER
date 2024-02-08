@@ -188,7 +188,7 @@ window.addEventListener("scroll", function () {
   }
 });
 
-/ /; /////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 // Перелистывание  страниц
 
 const mnbLeftBtn = document.querySelector(".mnb__left-btn");
@@ -233,7 +233,7 @@ mnbNavigate.addEventListener("click", () => {
   toggleRightNav();
 });
 
-/ /; /////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 // проверка на кнопки
 
 function testBtnNavBottom() {
@@ -253,7 +253,7 @@ function testBtnNavBottom() {
 }
 testBtnNavBottom();
 
-/ /; /////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 // поиск по странице
 
 const createSearhMenu = (pageName, findText, num) =>
@@ -282,7 +282,8 @@ function checkWordsOnPage(searchText) {
   const searchBlock = document.querySelector(".search-page");
   searchBlock.innerHTML = "";
   searchBlock.style.display = "flex";
-  searchBlock.style.position = "static";
+  searchBlock.style.position = "relative"; //прокрутка или relative или fixed что-то с высотами надо делать
+  // searchBlock.style.overflowY = "scroll";
 
   for (let i = 0; i < tbPages.length; i++) {
     let text = tbPages[i].innerText;
@@ -323,7 +324,6 @@ function searchOnPage(event) {
     (event.key === "Enter" && event.target === searchInputBtn) ||
     (event.type === "click" && event.target === searchInputBtn)
   ) {
-    console.log();
     const searchText = document
       .querySelector(".search-input__input")
       .value.toLowerCase();
@@ -373,15 +373,21 @@ searchInputBtn.addEventListener("click", searchOnPage);
 
 tbSearchInput.addEventListener("keydown", searchOnPage);
 headerSearchInput.addEventListener("keydown", searchOnPage);
-mobHeaderSearch.addEventListener("click", showSearch);
-searchPageContainer.addEventListener("click", showSearch);
+mobHeaderSearch.addEventListener("click", () => {
+  showSearch();
+  document.querySelector("body").style.overflow = "hidden";
+});
+searchPageContainer.addEventListener("click", () => {
+  showSearch();
+  document.querySelector("body").style.overflow = "auto";
+});
 
 function showSearch() {
   searchPageContainer.classList.toggle("search-page-container_active");
   searchPageForm.classList.toggle("search-page-form_active");
 }
 
-/ /; /////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
 // Устанавливаем начальные координаты для обработки свайпа
 let startX = 0;
