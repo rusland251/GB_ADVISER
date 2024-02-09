@@ -282,7 +282,7 @@ function checkWordsOnPage(searchText) {
   const searchBlock = document.querySelector(".search-page");
   searchBlock.innerHTML = "";
   searchBlock.style.display = "flex";
-  searchBlock.style.position = "relative"; //прокрутка или relative или fixed что-то с высотами надо делать
+  searchBlock.style.position = "relative";
   // searchBlock.style.overflowY = "scroll";
 
   for (let i = 0; i < tbPages.length; i++) {
@@ -309,13 +309,15 @@ function checkWordsOnPage(searchText) {
             ? "Работа со статистикой"
             : "Некорректное значение";
         const rslt = createSearhMenu(pageName, findText, i + 1);
-
         let newDiv = document.createElement("div");
         newDiv.innerHTML = rslt;
         searchBlock.appendChild(newDiv);
         j = words.length - 1;
       }
     }
+  }
+  if (searchBlock.innerHTML === "") {
+    searchBlock.innerHTML = `<br> &nbsp &nbsp Извините, мы ничего не нашли "${searchText}"  `;
   }
 }
 
@@ -330,7 +332,6 @@ function searchOnPage(event) {
     checkWordsOnPage(searchText);
   }
   if (event.key === "Enter" && event.target != searchInputBtn) {
-    console.log("asdasd");
     const searchText = event.target.value.toLowerCase();
     searchInput.value = searchText;
     checkWordsOnPage(searchText);
